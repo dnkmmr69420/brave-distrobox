@@ -1,20 +1,36 @@
-FROM quay.io/toolbx-images/alpine-toolbox:edge
+FROM registry.fedoraproject.org/fedora-toolbox:latest
 
 LABEL com.github.containers.toolbox="true" \
-      usage="This image is meant to be used with the toolbox or distrobox command" \
-      summary="A cloud-native terminal experience" \
-      maintainer="jorge.castro@gmail.com"
+      usage="runs Brave in distrobox" \
+      summary="An Docker image with all three brave branches installed" \
+      maintainer="dnkmmr"
 
-COPY extra-packages /
-RUN apk update && \
-    apk upgrade && \
-    grep -v '^#' /extra-packages | xargs apk add
-RUN rm /extra-packages
+RUN      dnf upgrade -y
 
-RUN   ln -fs /bin/sh /usr/bin/sh && \
-      ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
-      ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \ 
-      ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
-      ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree && \
-      ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/transactional-update
-     
+RUN      dnf install -y make gcc file bash-completion bc bzip2 cracklib-dicts curl diffutils dnf-plugins-core findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils krb5-libs less lsof man-db man-pages mtr ncurses nss-mdns openssh-clients pam passwd pigz pinentry procps-ng rsync shadow-utils sudo tcpdump time traceroute tree tzdata unzip util-linux vte-profile wget which whois words xorg-x11-xauth xz zip mesa-dri-drivers mesa-vulkan-drivers vulkan
+
+RUN      dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+RUN      dnf install -y intel-media-driver nvidia-vaapi-driver
+RUN      dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
+RUN      swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+
+RUN dnf copr enable -y kylegospo/distrobox-utils && \
+    dnf install -y \
+        xdg-utils-distrobox \
+        adw-gtk3-theme && \
+    ln -s /usr/bin/distrobox-host-exec /usr/bin/flatpak
+
+RUN      dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+RUN      rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+RUN      dnf install brave-browser
+
+RUN      dnf config-manager --add-repo https://brave-browser-rpm-beta.s3.brave.com/brave-browser-beta.repo
+RUN      rpm --import https://brave-browser-rpm-beta.s3.brave.com/brave-core-nightly.asc
+RUN      dnf install brave-browser-beta
+
+RUN      dnf config-manager --add-repo https://brave-browser-rpm-nightly.s3.brave.com/brave-browser-nightly.repo
+RUN      rpm --import https://brave-browser-rpm-nightly.s3.brave.com/brave-core-nightly.asc
+RUN      dnf install brave-browser-nightly
+
+RUN      rm -rf /tmp/*
