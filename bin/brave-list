@@ -1,2 +1,3 @@
 #!/bin/bash
-cat /usr/share/brave-list
+echo "Type the one you want to run."
+cat /usr/share/brave-list.txt
