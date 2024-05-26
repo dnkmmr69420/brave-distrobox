@@ -36,4 +36,8 @@ RUN      dnf install -y brave-browser-nightly
 RUN      dnf copr enable -y kylegospo/webapp-manager
 RUN      dnf install -y webapp-manager
 
+COPY      ./bin/brave-list /usr/bin
+COPY      ./share/brave-list.txt /usr/share
+RUN      chmod +x /usr/bin/brave-list
+
 RUN      rm -rf /tmp/*
