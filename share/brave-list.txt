@@ -1,0 +1,4 @@
+brave-browser-stable
+brave-browser-beta
+brave-browser-nightly
+webapp-manager
