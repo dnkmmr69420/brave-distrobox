@@ -33,4 +33,7 @@ RUN      dnf config-manager --add-repo https://brave-browser-rpm-nightly.s3.brav
 RUN      rpm --import https://brave-browser-rpm-nightly.s3.brave.com/brave-core-nightly.asc
 RUN      dnf install -y brave-browser-nightly
 
+RUN      dnf copr enable -y kylegospo/webapp-manager
+RUN      dnf install -y webapp-manager
+
 RUN      rm -rf /tmp/*
