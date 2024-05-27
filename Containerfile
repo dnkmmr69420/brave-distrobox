@@ -2,12 +2,14 @@ FROM registry.fedoraproject.org/fedora-toolbox:latest
 
 LABEL com.github.containers.toolbox="true" \
       usage="runs Brave in distrobox" \
-      summary="An Docker image with all three brave branches installed" \
+      summary="A Docker image with all three brave branches installed" \
       maintainer="dnkmmr"
 
 RUN      dnf upgrade -y
 
 RUN      dnf install -y make gcc file bash-completion bc bzip2 cracklib-dicts curl diffutils dnf-plugins-core findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils krb5-libs less lsof man-db man-pages mtr ncurses nss-mdns openssh-clients pam passwd pigz pinentry procps-ng rsync shadow-utils sudo tcpdump time traceroute tree tzdata unzip util-linux vte-profile wget which whois words xorg-x11-xauth xz zip mesa-dri-drivers mesa-vulkan-drivers vulkan
+
+RUN      dnf install -y fastfetch adw-gtk3 breeze-cursor-theme
 
 RUN      dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
@@ -15,11 +17,9 @@ RUN      dnf install -y intel-media-driver nvidia-vaapi-driver
 RUN      dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
 RUN      dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
 
-RUN dnf copr enable -y kylegospo/distrobox-utils && \
-    dnf install -y \
-        xdg-utils-distrobox \
-        adw-gtk3-theme && \
-    ln -s /usr/bin/distrobox-host-exec /usr/bin/flatpak
+RUN      dnf copr enable -y kylegospo/distrobox-utils && \
+RUN      dnf install -y xdg-utils-distrobox
+RUN      ln -s /usr/bin/distrobox-host-exec /usr/bin/flatpak
 
 RUN      dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 RUN      rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
