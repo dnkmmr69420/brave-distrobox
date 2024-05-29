@@ -11,6 +11,10 @@ RUN      dnf install -y make gcc file bash-completion bc bzip2 cracklib-dicts cu
 
 RUN      dnf install -y fastfetch adw-gtk3-theme breeze-cursor-theme
 
+COPY      ./repos/charm.repo /etc/yum.repos.d
+RUN      dnf config-manager --set-enabled charm
+RUN      dnf install -y gum
+
 RUN      dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 RUN      dnf install -y intel-media-driver nvidia-vaapi-driver
