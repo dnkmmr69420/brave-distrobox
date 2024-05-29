@@ -21,7 +21,7 @@ RUN      dnf install -y intel-media-driver nvidia-vaapi-driver
 RUN      dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
 RUN      dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
 
-RUN      dnf copr enable -y kylegospo/distrobox-utils && \
+RUN      dnf copr enable -y kylegospo/distrobox-utils
 RUN      dnf install -y xdg-utils-distrobox
 RUN      ln -s /usr/bin/distrobox-host-exec /usr/bin/flatpak
 
