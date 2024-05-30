@@ -15,6 +15,10 @@ COPY      ./repos/charm.repo /etc/yum.repos.d
 RUN      dnf config-manager --set-enabled charm
 RUN      dnf install -y gum
 
+COPY      ./bin/startup /usr/bin
+COPY      ./gum-startup.sh /etc/profile.d
+RUN      chmod +x /usr/bin/startup
+
 RUN      dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 RUN      dnf install -y intel-media-driver nvidia-vaapi-driver
