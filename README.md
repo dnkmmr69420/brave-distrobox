@@ -15,3 +15,7 @@ You can use a custom home directory if you wanted to
 ```bash
 distrobox create -i ghcr.io/dnkmmr69420/brave:latest -n brave -H ~/path/to/directory -p
 ```
+
+### Menu
+
+To get the menu to show up again after exiting brave, type `startup` in the container
