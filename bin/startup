@@ -1,0 +1,35 @@
+#!/bin/bash
+
+GUMREADVAR=$(gum choose "brave stable" "brave beta" "brave nightly" "update system" "shell" "exit to host")
+
+if test [ "$GUMREADVAR" = "brave stable" ];
+then
+  /usr/bin/brave-browser-stable
+fi
+
+
+if test [ "$GUMREADVAR" = "brave beta" ];
+then
+  /usr/bin/brave-browser-beta
+fi
+
+if test [ "$GUMREADVAR" = "brave nightly" ];
+then
+  /usr/bin/brave-browser-nightly
+fi
+
+if test [ "$GUMREADVAR" = "update system" ];
+then
+  sudo dnf upgrade -y
+fi
+
+
+if test [ "$GUMREADVAR" = "shell" ];
+then
+  /bin/bash
+fi
+
+if test [ "$GUMREADVAR" = "exit to host" ];
+then
+  exit
+fi
