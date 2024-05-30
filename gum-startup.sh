@@ -1,1 +1,1 @@
-/usr/bin/startup
+/usr/local/bin/startup
