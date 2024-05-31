@@ -15,9 +15,13 @@ COPY      ./repos/charm.repo /etc/yum.repos.d
 RUN      dnf config-manager --set-enabled charm
 RUN      dnf install -y gum
 
-COPY      ./bin/startup /usr/local/bin
 COPY      ./gum-startup.sh /etc/profile.d
+COPY      ./bin/startup /usr/local/bin
+COPY      ./bin/export-brave /usr/local/bin
+COPY      ./bin/unexport-brave /usr/local/bin
 RUN      chmod +x /usr/local/bin/startup
+RUN      chmod +x /usr/local/bin/export-brave
+RUN      chmod +x /usr/local/bin/unexport-brave
 
 RUN      dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
