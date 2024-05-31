@@ -1,6 +1,8 @@
 # Info
 
 This is a docker image that has all three brave versions installed on a fedora distrobox container
+
+This is powered by [gum](https://github.com/charmbracelet/gum)
  
 ## Usage
 
@@ -19,3 +21,4 @@ distrobox create -i ghcr.io/dnkmmr69420/brave:latest -n brave -H ~/path/to/direc
 ### Menu
 
 To get the menu to show up again after exiting brave, type `startup` in the container
+
