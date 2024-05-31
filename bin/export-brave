@@ -1,0 +1,5 @@
+#!/bin/bash
+
+distrobox-export --app brave-browser
+distrobox-export --app brave-browser-beta
+distrobox-export --app brave-browser-nightly
