@@ -1,13 +1,12 @@
 #!/bin/bash
 
-GUMREADVAR=$(gum choose "brave stable" "brave beta" "brave nightly" "update system" "export brave" "unexport brave" "shell")
+GUMREADVAR=$(gum choose "brave stable" "brave beta" "brave nightly" "webapp manager" "update system" "export brave" "unexport brave" "shell")
 
 if [ "$GUMREADVAR" = "brave stable" ];
 then
   /usr/bin/brave-browser-stable
   exec startup
 fi
-
 
 if [ "$GUMREADVAR" = "brave beta" ];
 then
@@ -18,6 +17,12 @@ fi
 if [ "$GUMREADVAR" = "brave nightly" ];
 then
   /usr/bin/brave-browser-nightly
+  exec startup
+fi
+
+if [ "$GUMREADVAR" = "webapp manager" ];
+then
+  /usr/bin/webapp-manager
   exec startup
 fi
 
@@ -41,5 +46,6 @@ fi
 
 if [ "$GUMREADVAR" = "shell" ];
 then
+  echo "Exiting to shell. Type \"startup\" to go back to the menu."
   exit
 fi
