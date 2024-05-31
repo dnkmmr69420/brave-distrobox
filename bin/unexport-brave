@@ -1,0 +1,5 @@
+#!/bin/bash
+
+distrobox-export --app brave-browser --delete
+distrobox-export --app brave-browser-beta --delete
+distrobox-export --app brave-browser-nightly --delete
