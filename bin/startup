@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GUMREADVAR=$(gum choose "brave stable" "brave beta" "brave nightly" "update system" "shell" "exit to host")
+GUMREADVAR=$(gum choose "brave stable" "brave beta" "brave nightly" "update system" "export brave" "unexport brave" "shell")
 
 if [ "$GUMREADVAR" = "brave stable" ];
 then
@@ -27,14 +27,19 @@ then
   exec startup
 fi
 
-
-if [ "$GUMREADVAR" = "shell" ];
+if [ "$GUMREADVAR" = "export brave" ];
 then
-  /bin/bash
+  /usr/local/bin/export-brave
   exec startup
 fi
 
-if [ "$GUMREADVAR" = "exit to host" ];
+if [ "$GUMREADVAR" = "unexport brave" ];
+then
+  /usr/local/bin/unexport-brave
+  exec startup
+fi
+
+if [ "$GUMREADVAR" = "shell" ];
 then
   exit
 fi
