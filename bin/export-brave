@@ -3,3 +3,11 @@
 distrobox-export --app brave-browser
 distrobox-export --app brave-browser-beta
 distrobox-export --app brave-browser-nightly
+
+[ -z "$DISTROBOX_HOST_HOME" ] && export DISTROBOX_HOST_HOME="$HOME"
+
+mkdir -p ~/.local/bin
+distrobox-export --bin /usr/bin/brave-browser --export-path $DISTROBOX_HOST_HOME/.local/bin
+distrobox-export --bin /usr/bin/brave-browser-stable --export-path $DISTROBOX_HOST_HOME/.local/bin
+distrobox-export --bin /usr/bin/brave-browser-beta --export-path $DISTROBOX_HOST_HOME/.local/bin
+distrobox-export --bin /usr/bin/brave-browser-nightly --export-path $DISTROBOX_HOST_HOME/.local/bin
