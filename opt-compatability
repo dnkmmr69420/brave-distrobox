@@ -13,20 +13,20 @@ mkdir -p /opt/brave.com/brave-nightly
 
 tee /opt/brave.com/brave/brave-browser <<EOF
 #!/usr/bin/env bash
-brave-browser \"\$@\"
+brave-browser "\$@"
 EOF
 chmod +x /opt/brave.com/brave/brave-browser
 
 tee /opt/brave.com/brave-beta/brave-browser-beta <<EOF
 #!/usr/bin/env bash
-brave-browser-beta \"\$@\"
+brave-browser-beta "\$@"
 EOF
 chmod +x /opt/brave.com/brave-beta/brave-browser-beta
 ln -sf /opt/brave.com/brave-beta/brave-browser-beta /opt/brave.com/brave-beta/brave-browser
 
 tee /opt/brave.com/brave-nightly/brave-browser-nightly <<EOF
 #!/usr/bin/env bash
-brave-browser-nightly \"\$@\"
+brave-browser-nightly "\$@"
 EOF
 chmod +x /opt/brave.com/brave-nightly/brave-browser-nightly
 ln -sf /opt/brave.com/brave-nightly/brave-browser-nightly /opt/brave.com/brave-nightly/brave-browser
