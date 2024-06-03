@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if (( $EUID != 0 )); then
+    echo "Must be ran as root"
+    exit 1
+fi
+
+mkdir -p /opt/brave.com
+mkdir -p /opt/brave.com/brave
+mkdir -p /opt/brave.com/brave-beta
+mkdir -p /opt/brave.com/brave-nightly
+
+
+tee /etc/systemd/system/nix-daemon.service.d/override.conf <<EOF
+[Service]
+Environment="NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt"
+EOF
