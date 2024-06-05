@@ -24,7 +24,7 @@ To get the menu to show up again after exiting brave, type `startup` in the cont
 
 ## brave opt compatability
 
-When you install a web app with brave, it executes brave in /opt which doesn't exist on the host. This script adds some bash scripts in /opt/brave.com to redirect to brave in distrobox. It runs the exported binaries. Requires root access to run. DO NOT USE IT IF YOU INSTALLED BRAVE ON THE HOST (flatpak and snap versions do not count).
+When you install a web app with brave, it executes brave in /opt which doesn't exist on the host. This script adds some bash scripts in /opt/brave.com to redirect to brave in distrobox. It runs the exported binaries. Requires root access to run. DO NOT USE IT IF YOU INSTALLED BRAVE ON THE HOST (flatpak, snap, and extracted archive versions do not count. Only when installed with the host system's package manager.).
 
 ```bash
 curl -s https://raw.githubusercontent.com/dnkmmr69420/brave-distrobox/main/opt-compatability | sudo bash
