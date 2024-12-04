@@ -12,7 +12,7 @@ RUN      dnf install -y make gcc file bash-completion bc bzip2 cracklib-dicts cu
 RUN      dnf install -y fastfetch adw-gtk3-theme breeze-cursor-theme
 
 COPY      ./repos/charm.repo /etc/yum.repos.d
-RUN      dnf config-manager --set-enabled charm
+RUN      rpm --import https://repo.charm.sh/yum/gpg.key
 RUN      dnf install -y gum
 
 COPY      ./gum-startup.sh /etc/profile.d
