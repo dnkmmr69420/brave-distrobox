@@ -31,15 +31,15 @@ RUN      dnf copr enable -y kylegospo/distrobox-utils
 RUN      dnf install -y xdg-utils-distrobox
 RUN      ln -s /usr/bin/distrobox-host-exec /usr/bin/flatpak
 
-RUN      dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+RUN      dnf config-manager add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 RUN      rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 RUN      dnf install -y brave-browser
 
-RUN      dnf config-manager --add-repo https://brave-browser-rpm-beta.s3.brave.com/brave-browser-beta.repo
+RUN      dnf config-manager add-repo https://brave-browser-rpm-beta.s3.brave.com/brave-browser-beta.repo
 RUN      rpm --import https://brave-browser-rpm-beta.s3.brave.com/brave-core-nightly.asc
 RUN      dnf install -y brave-browser-beta
 
-RUN      dnf config-manager --add-repo https://brave-browser-rpm-nightly.s3.brave.com/brave-browser-nightly.repo
+RUN      dnf config-manager add-repo https://brave-browser-rpm-nightly.s3.brave.com/brave-browser-nightly.repo
 RUN      rpm --import https://brave-browser-rpm-nightly.s3.brave.com/brave-core-nightly.asc
 RUN      dnf install -y brave-browser-nightly
 
