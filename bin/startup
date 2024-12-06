@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GUMREADVAR=$(gum choose "brave stable" "brave beta" "brave nightly" "webapp manager" "update system" "export brave" "unexport brave" "shell")
+GUMREADVAR=$(gum choose "brave stable" "brave beta" "brave nightly" "webapp manager" "update container" "export brave" "unexport brave" "shell")
 
 if [ "$GUMREADVAR" = "brave stable" ];
 then
@@ -26,7 +26,7 @@ then
   exec startup
 fi
 
-if [ "$GUMREADVAR" = "update system" ];
+if [ "$GUMREADVAR" = "update container" ];
 then
   sudo dnf upgrade -y
   exec startup
