@@ -23,7 +23,7 @@ RUN      chmod +x /usr/local/bin/unexport-brave
 
 RUN      dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-RUN      dnf install -y intel-media-driver nvidia-vaapi-driver
+RUN      dnf install -y intel-media-driver nvidia-vaapi-driver --skip-unavailable
 RUN      dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
 RUN      dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
 
